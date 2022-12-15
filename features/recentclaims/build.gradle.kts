@@ -1,6 +1,10 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+   // kotlin("kapt")
+//    id("com.google.dagger.hilt.android")
+    id("mm.android.hilt")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -31,9 +35,14 @@ android {
     }
 }
 
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     implementation (project(":data"))
-    implementation ("androidx.core:core-ktx:1.8.0")
+    implementation(libs.androidx.core.ktx)
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation(libs.androidx.activity.compose)
     // implementation 'androidx.compose.ui:ui-graphics'
@@ -50,6 +59,14 @@ dependencies {
     implementation(libs.compose.ui.viewbinding)
     implementation(libs.compose.ui.material3)
     implementation(libs.compose.ui.ui)
+
+    implementation(libs.kotlinx.datetime)
+    implementation(libs.kotlin.coroutines.android)
+    implementation(libs.kotlinx.serialization.json)
+    // Retrofit & OkHttp
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+
 
     testImplementation ("junit:junit:4.13.2")
     // Compose test
